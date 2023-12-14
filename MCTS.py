@@ -20,10 +20,11 @@ class MCTS:
             return board.random_child()
         else:
             legal_actions = board.get_legal_actions()
-            action_values = np.zeros(len(legal_actions))
-            for i, a in enumerate(legal_actions):
-                action_values[i] = self.Q[board] / self.N[board]
-            ind = np.argmax(action_values)
+            Q_values = np.zeros(len(legal_actions))
+            for i, a in enumerate(legal_actions):  # Get max Q value
+                child = board.make_action(board.state, a, board.board_size)
+                Q_values[i] = self.Q[child]
+            ind = np.argmax(Q_values)
             return legal_actions[ind]
 
     def UCT_search(self, board):
@@ -49,8 +50,11 @@ class MCTS:
         legal_actions = board.get_legal_actions()
         UCT_values = np.zeros(len(legal_actions))
         for i, a in enumerate(legal_actions):
-            UCT_values[i] = self.Q[board] + \
-                            self.c * np.sqrt(np.log(self.N[board]) / self.N[board])
+            child = board.make_action(board.state, a, board.board_size)
+            if child not in self.Q.keys():  # If not expanded
+                continue
+            UCT_values[i] = self.Q[child] + \
+                            self.c * np.sqrt(np.log(self.N[child]) / self.N[child])
         ind = np.argmax(UCT_values)
         return legal_actions[ind]
 
