@@ -1,7 +1,20 @@
 from MCTS import *
 
 
-def MCTS_v_Random(roll_iters, display=False, player_id=0, board_size=3, return_winner=False, data_run=False, tree=None, return_tree=False):
+def MCTS_v_Random(roll_iters, display=False, player_id=0, board_size=3, return_winner=False, data_run=False, tree=None,
+                  return_tree=False):
+    """
+    Parameters:
+        roll_iters: Number of iterations per rollout
+        display: If display board after each move
+        player_id: Which player goes first
+        board_size: a x a grid
+        return_winner: If winner value should be returned
+        data_run: If collecting data so don't print final board
+        tree: If building off of previous model
+        return_tree: If want to return current model
+    Returns: winner or tree or both
+    """
     if tree is None:
         tree = MCTS()
     board = Board(board_size=board_size)
@@ -52,6 +65,16 @@ def MCTS_v_Random(roll_iters, display=False, player_id=0, board_size=3, return_w
 
 
 def MCTS_v_MCTS(roll_iters, display=False, player_id=0, board_size=3, return_winner=False, data_run=False):
+    """
+    Parameters:
+        roll_iters: Number of iterations per rollout
+        display: If display board after each move
+        player_id: Which player goes first
+        board_size: a x a grid
+        return_winner: If winner value should be returned
+        data_run: If collecting data so don't print final board
+    Returns: winner or tree or both
+    """
     tree1 = MCTS()
     tree2 = MCTS()
 
@@ -102,7 +125,19 @@ def MCTS_v_MCTS(roll_iters, display=False, player_id=0, board_size=3, return_win
         return board.winner
 
 
-def MCTS_v_Minimax(roll_iters, max_depth=2, display=False, player_id=0, board_size=3, return_winner=False, data_run=False):
+def MCTS_v_Minimax(roll_iters, max_depth=2, display=False, player_id=0, board_size=3, return_winner=False,
+                   data_run=False):
+    """
+    Parameters:
+        roll_iters: Number of iterations per rollout
+        max_depth: Max number of levels to check
+        display: If display board after each move
+        player_id: Which player goes first
+        board_size: a x a grid
+        return_winner: If winner value should be returned
+        data_run: If collecting data so don't print final board
+    Returns: winner or tree or both
+    """
     tree = MCTS()
     board = Board(board_size=board_size)
     while True:
@@ -148,6 +183,16 @@ def MCTS_v_Minimax(roll_iters, max_depth=2, display=False, player_id=0, board_si
 
 
 def Minimax_v_Random(max_depth=2, display=False, player_id=0, board_size=3, return_winner=False, data_run=False):
+    """
+    Parameters:
+        max_depth: Max number of levels to check
+        display: If display board after each move
+        player_id: Which player goes first
+        board_size: a x a grid
+        return_winner: If winner value should be returned
+        data_run: If collecting data so don't print final board
+    Returns: winner or tree or both
+    """
     board = Board(board_size=board_size)
     while True:
         if display:
@@ -186,6 +231,16 @@ def Minimax_v_Random(max_depth=2, display=False, player_id=0, board_size=3, retu
 
 
 def Expectimax_v_Random(max_depth=2, display=False, player_id=0, board_size=3, return_winner=False, data_run=False):
+    """
+    Parameters:
+        max_depth: Max number of levels to check
+        display: If display board after each move
+        player_id: Which player goes first
+        board_size: a x a grid
+        return_winner: If winner value should be returned
+        data_run: If collecting data so don't print final board
+    Returns: winner or tree or both
+    """
     board = Board(board_size=board_size)
     while True:
         if display:
@@ -223,7 +278,19 @@ def Expectimax_v_Random(max_depth=2, display=False, player_id=0, board_size=3, r
         return board.winner
 
 
-def MCTS_v_Epectimax(roll_iters, max_depth=2, display=False, player_id=0, board_size=3, return_winner=False, data_run=False):
+def MCTS_v_Epectimax(roll_iters, max_depth=2, display=False, player_id=0, board_size=3, return_winner=False,
+                     data_run=False):
+    """
+    Parameters:
+        max_depth: Max number of levels to check
+        roll_iters: Number of iterations per rollout
+        display: If display board after each move
+        player_id: Which player goes first
+        board_size: a x a grid
+        return_winner: If winner value should be returned
+        data_run: If collecting data so don't print final board
+    Returns: winner or tree or both
+    """
     tree = MCTS()
     board = Board(board_size=board_size)
     while True:
@@ -271,6 +338,15 @@ def MCTS_v_Epectimax(roll_iters, max_depth=2, display=False, player_id=0, board_
 
 
 def Random_v_Random(display=False, player_id=0, board_size=3, return_winner=False, data_run=False):
+    """
+    Parameters:
+        display: If display board after each move
+        player_id: Which player goes first
+        board_size: a x a grid
+        return_winner: If winner value should be returned
+        data_run: If collecting data so don't print final board
+    Returns: winner or tree or both
+    """
     board = Board(board_size=board_size)
     while True:
         if display:

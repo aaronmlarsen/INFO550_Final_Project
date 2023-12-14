@@ -3,6 +3,7 @@ import numpy as np
 
 
 def game_plots_MCTS_rollout(data, iters, roll_out, method2, filename):
+    """Makes plot of wins with increasing rollouts and increasing alpha"""
     for i in range(roll_out):
         valArr1 = data[iters * i:iters * (i + 1), 3]
         valArr2 = data[iters * i:iters * (i + 1), 2]
@@ -46,6 +47,7 @@ def game_plots_MCTS_rollout(data, iters, roll_out, method2, filename):
 
 
 def game_plots_MCTS(data, iters, roll_out, method2, filename):
+    """Makes plot of wins, loses, and draws"""
     for i in range(roll_out):
         valArr1 = data[iters * i:iters * (i + 1), 3]
         valArr2 = data[iters * i:iters * (i + 1), 2]
@@ -71,7 +73,9 @@ def game_plots_MCTS(data, iters, roll_out, method2, filename):
     plt.legend()
     plt.savefig(filename + "_games.jpeg", dpi=640, bbox_inches='tight')
 
+
 def game_plots(data, iters, method1, method2, filename):
+    """Makes plot of wins, loses, and draws"""
     valArr1 = data[:, 0]
     valArr2 = data[:, 1]
     valArr3 = data[:, 2]
